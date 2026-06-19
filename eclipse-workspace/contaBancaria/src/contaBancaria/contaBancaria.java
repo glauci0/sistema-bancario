@@ -6,6 +6,7 @@ public class contaBancaria {
 	private String titular;
 	private String senha;
 	private double saldo;
+	private int opcao;
 	
 	// Métodos
 	public void setTitular (String titular) {
@@ -87,5 +88,13 @@ public class contaBancaria {
 	
 	public double getSaldo() {
 		return saldo;
+	}
+	
+	public void setOpcao (int opcao) {
+		this.opcao = opcao;
+	}
+	
+	public int getOpcao() {
+		return opcao;
 	}
 }
