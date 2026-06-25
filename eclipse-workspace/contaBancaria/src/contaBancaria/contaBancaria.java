@@ -56,10 +56,11 @@ public class contaBancaria {
 			
 			if (Character.isDigit(c)) {
 				temNumero = true;
-			}
-			
-			if (Character.isLetter(c)) {
+			} else if (Character.isLetter(c)) {
 				temLetra = true;
+			} else {
+				// Encontrou caractere especial
+				return false;
 			}
 		}
 			return temNumero && temLetra;
@@ -67,6 +68,10 @@ public class contaBancaria {
 	
 	public String getSenha () {
 		return senha;
+	}
+	
+	public boolean confirmarSenha (String senhaDigitada) {
+		return this.senha.equals(senhaDigitada);
 	}
 	
 	public void depositar(double valor) {

@@ -9,86 +9,89 @@ public class contaBancariaTestar {
         Scanner sc = new Scanner(System.in);
 		contaBancaria cc = new contaBancaria();
 		
-		cc.setTitular("Anna Julya");
-		cc.setSenha("Alessandra44");
+		String titularDigitada;
+		String senhaDigitada;
+		
+		String titularCorreto = "Glaucio";
+		String senhaCorreta = "Alessandra44";
 		
 		// Verificação de Titular
-        System.out.print("Digite o Titular: ");
-        String titularDigitada = sc.nextLine();
-        
-        System.out.print("Digite uma senha: ");
-        String senhaDigitada = sc.nextLine();
+		do {
 
-        
-        cc.setTitular(titularDigitada);
+		    System.out.println("Faça seu Login!\n");
 
-        if (cc.validarTitular()) {
-        	
-            System.out.println("Titular válido(a)! ✅");
-            
-        } else {
-        	
-            System.out.println("Titular inválido(a)! Tente novamente! ❌");
-            
-        } while (!titularDigitada.equals(cc.getTitular()));
-        
-        // Verificação de Senha
-        cc.setSenha(senhaDigitada);
+		    System.out.print("Digite o Titular: ");
+		    titularDigitada = sc.nextLine();
 
-        if (cc.validarSenha()) {
-            System.out.println("Senha válida! ✅");
-        } else {
-            System.out.println("Senha inválida! ❌");
-            System.out.println("A senha deve ter pelo menos 6 caracteres, com letras e números.");
-        }
+		    System.out.print("Digite a Senha: ");
+		    senhaDigitada = sc.nextLine();
+
+		    if (!titularDigitada.equals(titularCorreto)
+		            || !senhaDigitada.equals(senhaCorreta)) {
+
+		        System.out.println("\n❌ Titular ou senha inválidos, tente Novamente!\n");
+		    }
+
+		} while (!titularDigitada.equals(titularCorreto)
+		        || !senhaDigitada.equals(senhaCorreta));
+
+		System.out.println("\n✅ Login realizado com sucesso!");
         
         while (cc.getOpcao() !=3) {
-        	System.out.println("\n========= MENU =========");
+        	System.out.println("\n========= MENU =========\n");
         	System.out.println("1 - Depositar");
         	System.out.println("2 - Sacar");
         	System.out.println("3 - Sair");
-        	System.out.print("Escolha uma opção:");
+        	System.out.print("\nEscolha uma opção: ");
         	
         	cc.setOpcao (sc.nextInt());
         	
-        
         
         // Verificação de Depósito
         	if (cc.getOpcao() == 1) { 
         	
         		cc.depositar(0);
-        		System.out.print("💰 Digite o valor desejado para depósito: ");
+        		System.out.print("\n💰 Digite o valor desejado para depósito: R$");
         		double deposito = sc.nextDouble();
         
         		cc.depositar(deposito);
         
-        		System.out.println("Valor depositado: " + deposito);
-        		System.out.println("Saldo Atual: " + cc.getSaldo());
-        		System.out.println("Depósito efetuado com sucesso!");
+        		System.out.println("\nValor depositado: R$" + deposito);
+        		System.out.println("\nSaldo Atual: R$" + cc.getSaldo());
+        		System.out.println("\nDepósito efetuado com sucesso!");
+        		
         	
         }
         // Verificação de Saque
-        	else if (cc.getOpcao()== 2) {
-        		System.out.print("💸 Digite o valor para Sacar: ");
-        		double saque = sc.nextDouble();
-        
-        		if (cc.sacar(saque)) {
-        			System.out.println("Saque Realizado com Sucesso! ✅");
-        		} else {
-        			System.out.println("Saldo Insuficiente! ❌");
-        		}
-       
-        		System.out.println("Saldo Atual: " + cc.getSaldo());
-        
+        		else if (cc.getOpcao()== 2) {
+        			System.out.print("\n💸 Digite o valor para Saque: R$");
+        			double saque = sc.nextDouble();
         		
-        }
-        	else if  (cc.getOpcao() == 3) {
-        		System.out.println("Encerrando programa...");
-        		sc.close();
-        }
-        	else {
-        		System.out.println("Opção Inválida!");
-        	}
+        			System.out.print("\nConfirme sua senha: ");
+        			String confirmarSenha = sc.next();
+        		
+        			if (!confirmarSenha.equals(senhaCorreta)) {
+        			
+        				} else if (cc.sacar(saque)) {
+                			System.out.println("\nSaldo Atual: R$" + cc.getSaldo());
+                			System.out.println("\nSaque Realizado com Sucesso! ✅");
+        				
+        				} else if (cc.sacar(saque)) {  
+        					System.out.println("\nSaldo Insuficiente! ❌");
+        					
+        				} 	else if (cc.sacar(saque)){
+                			System.out.println("\n❌ Senha Incorreta! Operação Cancelada!");
+        				}
+        		}
+        			
+        		else if  (cc.getOpcao() == 3) {
+                   System.out.println("Encerrando programa...");
+                   sc.close();
+                   System.exit(0);
+                } else {
+             		System.out.println("Opção Inválida!");
+        		
+            }
         }
     }
 }
